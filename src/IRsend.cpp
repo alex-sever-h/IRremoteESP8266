@@ -136,6 +136,7 @@ uint16_t IRsend::mark(uint16_t usec) {
 #endif
     elapsed = usecTimer.elapsed();  // Update & recache the actual elapsed time.
   }
+
   return counter;
 }
 

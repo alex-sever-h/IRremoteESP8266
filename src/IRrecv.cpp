@@ -353,6 +353,13 @@ bool IRrecv::decode(decode_results *results, irparams_t *save) {
     return true;
   }
 #endif
+
+#if DECODE_YAMATO
+  DPRINTLN("Attempting YAMATO decode");
+  if (decodeYAMATO(results))
+      return true;
+#endif
+
   // decodeHash returns a hash on any input.
   // Thus, it needs to be last in the list.
   // If you add any decodes, add them before this.

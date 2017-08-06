@@ -129,6 +129,9 @@
 #define DECODE_TROTEC        false  // Not implemented.
 #define SEND_TROTEC          true
 
+#define DECODE_YAMATO        1
+#define SEND_YAMATO          1
+
 /*
  * Always add to the end of the list and should never remove entries
  * or change order. Projects may save the type number for later usage
@@ -163,7 +166,8 @@ enum decode_type_t {
   GREE,
   PRONTO,
   NEC_LIKE,
-  TROTEC
+  TROTEC,
+  YAMATO,
 };
 
 // Message lengths & required repeat values

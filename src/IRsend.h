@@ -177,6 +177,10 @@ class IRsend {
                   uint16_t repeat = 0);
 #endif
 
+#if SEND_YAMATO
+  void sendYamato(unsigned char data[]);
+#endif
+
  protected:
 #ifdef UNIT_TEST
 #ifndef HIGH

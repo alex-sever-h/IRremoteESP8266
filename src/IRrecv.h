@@ -196,6 +196,10 @@ class IRrecv {
   bool decodeAiwaRCT501(decode_results *results,
                         uint16_t nbits = AIWA_RC_T501_BITS, bool strict = true);
 #endif
+#if DECODE_YAMATO
+  bool  decodeYAMATO     (decode_results *results) ;
+  bool  interpretYAMATO (const decode_results *results, const unsigned char *data);
+#endif
 };
 
 #endif  // IRRECV_H_
