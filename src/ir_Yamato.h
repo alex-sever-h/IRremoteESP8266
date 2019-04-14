@@ -172,27 +172,30 @@ public:
     }
 
 
-    IRYamato(int recvPin, int sendPin): _irsend(sendPin),
-        _powerState(0x04, &packetData[5], 0x24, {{"OFF", 0x20}, {"ON", 0x24}}),
-        _operationMode(0x09, &packetData[6], 0x0F, {{"AUTO", 0x08}, {"FAN", 0x07},
+    IRYamato(int recvPin, int sendPin):
+        _irsend(sendPin),
+        _powerState(0x04, &packetData[5], 0x24, {{"off", 0x20}, {"on", 0x24}, {"OFF", 0x20}, {"ON", 0x24}}),
+        _operationMode(0x09, &packetData[6], 0x0F, {{"off", 0x05}, {"AUTO", 0x08}, {"FAN", 0x07},
                                               {"COOL", 0x03}, {"HEAT", 0x01},
                                               {"DEHUMIDIFY", 0x02}}),
-        _temperature(0x10, &packetData[7], 0x0F, {{"24", 0x07},
-                                            {"31", 0x00},
-                                            {"30", 0x01},
-                                            {"29", 0x02},
-                                            {"28", 0x03},
-                                            {"27", 0x04},
-                                            {"26", 0x05},
-                                            {"25", 0x06},
-                                            {"23", 0x08},
-                                            {"22", 0x09},
-                                            {"21", 0x0A},
-                                            {"20", 0x0B},
-                                            {"19", 0x0C},
-                                            {"18", 0x0D},
-                                            {"17", 0x0E},
-                                            {"16", 0x0F}}),
+        _temperature(0x10, &packetData[7], 0x0F, {
+            {"24", 0x07}, {"24.0", 0x07},
+            {"31", 0x00}, {"31.0", 0x00},
+            {"30", 0x01}, {"30.0", 0x01},
+            {"29", 0x02}, {"29.0", 0x02},
+            {"28", 0x03}, {"28.0", 0x03},
+            {"27", 0x04}, {"27.0", 0x04},
+            {"26", 0x05}, {"26.0", 0x05},
+            {"25", 0x06}, {"25.0", 0x06},
+            {"23", 0x08}, {"23.0", 0x08},
+            {"22", 0x09}, {"22.0", 0x09},
+            {"21", 0x0A}, {"21.0", 0x0A},
+            {"20", 0x0B}, {"20.0", 0x0B},
+            {"19", 0x0C}, {"19.0", 0x0C},
+            {"18", 0x0D}, {"18.0", 0x0D},
+            {"17", 0x0E}, {"17.0", 0x0E},
+            {"16", 0x0F}, {"16.0", 0x0F},
+          }),
         _fanSpeed(0x0D, &packetData[8], 0x07, {{"AUTO", 0x00}, {"LOW", 0x02},
                                          {"MID", 0x03}, {"HIGH", 0x05},
                                          {"TURBO", 0x07}}),
@@ -220,12 +223,12 @@ public:
                      {"verticalPosition", IRYamato::VERTICAL_POSITION},
                      {"horizontalPosition", IRYamato::HORIZONTAL_POSITION}};
 
-        _operationMode.set("AUTO");
+        _operationMode.set("off");
         _temperature.set("24");
         _fanSpeed.set("AUTO");
         _verticalPosition.set("SWING");
         _horizontalPosition.set("SWING");
-        _powerState.set("OFF");
+        _powerState.set("off");
 
         _irsend.begin();
     }
